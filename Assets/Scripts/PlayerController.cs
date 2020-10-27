@@ -56,4 +56,12 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Finish"))
+        {
+            GameManager.instance.LevelEnd();
+        }
+    }
 }
