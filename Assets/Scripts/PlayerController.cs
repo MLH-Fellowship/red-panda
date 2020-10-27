@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         if (additiveModifier > 0)
         {
             if (fearMeter >= fearThreshold && fearState <= 2)
-            { // Currently a simple log handle that is repeated, prefer a one off broadcast system?
+            {
                 FearStateTransition("Panda has a lot of fear!");
                 deadPanda = true;
             }
@@ -94,17 +94,17 @@ public class PlayerController : MonoBehaviour
             }
         } else if (additiveModifier < 0)
         {
-            if (fearMeter < fearThreshold && fearState == 2)
-            { // Currently a simple log handle that is repeated, prefer a one off broadcast system?
-                FearStateTransition("Panda is shivering in safety!");
-            }
-            else if (fearMeter < 0.33f * fearThreshold && fearState >= 1)
+            if (fearMeter < fearThreshold && fearState > 2)
             {
-                FearStateTransition("Panda is a bit nervous while in safety!");
+                FearStateTransition("Panda is shivering in safety!", -1);
             }
-            else if (fearMeter < 0f && fearState > 0)
+            else if (fearMeter < 0.5f * fearThreshold && fearState > 1)
             {
-                FearStateTransition("Panda has calmed down!", -1);
+                FearStateTransition("Panda is calming down!", -1);
+            }
+            else if (fearMeter < 0f && fearState >= 1)
+            {
+                FearStateTransition("Panda is calm!", -1);
                 fearMeter = 0f;
             }
         }
