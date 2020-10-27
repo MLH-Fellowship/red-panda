@@ -8,6 +8,16 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 5f;
     bool isGrounded;
 
+    // A threshold of 5 seconds for fear tolerance before the panda gives up
+    public float fearThreshold = 5f;
+
+    /* The current meter for fear, we can have this an integer and take the updates of the
+     * integer floor of another meter if we want an interactive enter/exit exposure to fear. */
+    private float fearMeter = 0f;
+
+    /* Dummy variable for panda losing the level due to fear? */
+    public bool deadPanda = false;
+
     Rigidbody rb;
 
     void Awake()
@@ -20,6 +30,27 @@ public class PlayerController : MonoBehaviour
         GroundChecker();
         WalkHandler();
         JumpHandler();
+        FearHandler();
+    }
+
+    void FearHandler()
+    { // Handle fear meter too high
+        if (fearMeter >= fearThreshold)
+        { // Currently a simple log handle that is repeated, prefer a one off broadcast system?
+            deadPanda = true;
+            Debug.Log("Panda has a lot of fear!");
+        } else if (fearMeter >= 0.66f*fearThreshold)
+        {
+            Debug.Log("Panda is pretty scared!");
+        } else if (fearMeter >= 0.33f * fearThreshold)
+        {
+            Debug.Log("Panda is getting anxious!");
+        }
+    }
+
+    public void ModifyFear(float additiveModifier)
+    {
+        fearMeter += additiveModifier;
     }
 
     void WalkHandler() 
