@@ -13,10 +13,15 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        Time.timeScale = 1.0f;
     }
 
     void FixedUpdate()
     {
+        if (GameManager.instance.paused)
+        {
+            return;
+        }
         GroundChecker();
         WalkHandler();
         JumpHandler();
