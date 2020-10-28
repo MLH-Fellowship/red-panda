@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6553683433302425343}
   - component: {fileID: 6553683433302425342}
   - component: {fileID: 6553683433302425341}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SafeHeightTrigger2
   m_TagString: Safety
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 6553683433469408750}
   - component: {fileID: 6553683433469408749}
   - component: {fileID: 6553683433469408748}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SafeHeightTrigger3
   m_TagString: Safety
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 6553683433710734594}
   - component: {fileID: 6553683433710734593}
   - component: {fileID: 6553683433710734592}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SafeHeightTrigger1
   m_TagString: Safety
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6553683434832940695}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TreeSafeZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,6 +524,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OptimizedTree (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 148203360458423770, guid: bf3f6162e52aa6945988bebb53f243c3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7918113776947547972, guid: bf3f6162e52aa6945988bebb53f243c3,
         type: 3}
