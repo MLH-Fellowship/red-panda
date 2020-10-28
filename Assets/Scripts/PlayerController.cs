@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    void Start()
+    {
+        if (GameManager.instance.paused)
+            GameManager.instance.TogglePauseGame();
+    }
+
     void FixedUpdate()
     {
         if (GameManager.instance.paused)

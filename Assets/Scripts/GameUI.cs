@@ -22,4 +22,14 @@ public class GameUI : MonoBehaviour
     {
         GameManager.instance.TogglePauseGame();
     }
+
+    public void OnMenuButton()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnExitButton()
+    {
+        Application.Quit();
+    }
 }
