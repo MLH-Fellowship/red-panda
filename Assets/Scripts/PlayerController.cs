@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 8f;
     public float jumpSpeed = 5f;
+    public TextMeshProUGUI scriptDisplay;
+    public GameObject scriptBox;
+
     bool isGrounded;
 
     // A threshold of 5 seconds for fear tolerance before the panda gives up
@@ -145,6 +149,19 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("Finish"))
         {
             GameManager.instance.LevelEnd();
+        }
+        else if (other.CompareTag("ScriptTrigger"))
+        {
+            scriptDisplay.text = other.GetComponent<ScriptTriggerController>().scriptContent;
+            scriptBox.SetActive(true);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("ScriptTrigger"))
+        {
+            scriptBox.SetActive(false);
         }
     }
 
