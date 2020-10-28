@@ -28,10 +28,21 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        Time.timeScale = 1.0f;
+    }
+
+    void Start()
+    {
+        if (GameManager.instance.paused)
+            GameManager.instance.TogglePauseGame();
     }
 
     void FixedUpdate()
     {
+        if (GameManager.instance.paused)
+        {
+            return;
+        }
         GroundChecker();
         WalkHandler();
         JumpHandler();
