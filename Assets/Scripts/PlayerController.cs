@@ -76,8 +76,9 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         float rayDist = 0.65f;
         Vector3 rayDir = new Vector3(0, -1);
+        int layerMask = 1 << 0;
 
-        if (Physics.Raycast(transform.position, rayDir, out hit, rayDist) && hit.collider.tag != "Safety" && hit.collider.tag != "FearEntity")
+        if (Physics.Raycast(transform.position, rayDir, out hit, rayDist, layerMask))
         {
             isGrounded = true;
         }
