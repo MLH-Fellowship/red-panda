@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI scriptDisplay;
     public GameObject scriptBox;
 
+    public UnityEngine.UI.Slider fearMeterBar;
+
     bool isGrounded;
 
     // A threshold of 5 seconds for fear tolerance before the panda gives up
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Time.timeScale = 1.0f;
+        fearMeterBar.value = fearMeter;
     }
 
     void Start()
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
     private void ModifyFear(float additiveModifier)
     {
         fearMeter += additiveModifier;
+        fearMeterBar.value = fearMeter;
 
         if (additiveModifier > 0)
         {
