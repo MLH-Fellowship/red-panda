@@ -154,6 +154,13 @@ public class PlayerController : MonoBehaviour
         {
             scriptDisplay.text = other.GetComponent<ScriptTriggerController>().scriptContent;
             scriptBox.SetActive(true);
+        } else if (other.CompareTag("Food"))
+        {
+            fearMeter = 0f;
+            UnityEngine.Debug.Log("Panda has eaten");
+            fearState = 0;
+            other.gameObject.SetActive(false);
+            walkSpeed = 8f;
         }
     }
 
