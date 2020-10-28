@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject scriptBox;
 
     public UnityEngine.UI.Slider fearMeterBar;
+    public TextMeshProUGUI fearText;
 
     bool isGrounded;
 
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Time.timeScale = 1.0f;
         fearMeterBar.value = fearMeter;
+        fearText.text = "The panda is calm!";
     }
 
     void Start()
@@ -138,6 +140,7 @@ public class PlayerController : MonoBehaviour
     private void FearStateTransition(System.String str, int sign = 1)
     {
         UnityEngine.Debug.Log(str);
+        fearText.text = str;
 
         if (sign > 0)
         {

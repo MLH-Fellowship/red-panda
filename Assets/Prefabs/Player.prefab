@@ -67,6 +67,7 @@ MonoBehaviour:
   scriptDisplay: {fileID: 0}
   scriptBox: {fileID: 0}
   fearMeterBar: {fileID: 0}
+  fearText: {fileID: 0}
   fearThreshold: 8
   deadPanda: 0
 --- !u!54 &3053782953383138624
