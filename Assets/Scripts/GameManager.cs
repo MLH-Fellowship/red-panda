@@ -6,16 +6,44 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    // Start is called before the first frame update
+    public bool paused;
+
     void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Cancel") && SceneManager.GetActiveScene().buildIndex > 0)
+        {
+            TogglePauseGame();
+        }
         
+    }
+
+    public void TogglePauseGame()
+    {
+        paused = !paused;
+        if (paused)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
+
+        GameUI.instance.TogglePauseScreen(paused);
     }
 
     public void LevelEnd()
