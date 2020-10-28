@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI scriptDisplay;
     public GameObject scriptBox;
 
+    private bool checkpointReached = false;
+    private bool checkpointOne = false;
+    private bool checkpointTwo = false;
+    private bool checkpointThree = false;
+
     bool isGrounded;
 
     // A threshold of 5 seconds for fear tolerance before the panda gives up
@@ -50,6 +55,15 @@ public class PlayerController : MonoBehaviour
         GroundChecker();
         WalkHandler();
         JumpHandler();
+        CheckPointHandler();
+    }
+
+    void CheckPointHandler()
+    {
+        if (checkpointOne && checkpointTwo && checkpointThree)
+        {
+            UnityEngine.Debug.Log("<Panda> has searched the area for <their mate>!");
+        }
     }
 
     void WalkHandler() 
@@ -161,6 +175,22 @@ public class PlayerController : MonoBehaviour
             fearState = 0;
             other.gameObject.SetActive(false);
             walkSpeed = 8f;
+        } else if (other.CompareTag("CheckPoint"))
+        {
+            if (other.gameObject.name.Equals("CheckPointTrigger1"))
+            {
+                checkpointOne = true;
+            } else if (other.gameObject.name.Equals("CheckPointTrigger2"))
+            {
+                checkpointTwo = true;
+            } else if (other.gameObject.name.Equals("CheckPointTrigger3"))
+            {
+                checkpointThree = true;
+            } else if (!checkpointReached && other.gameObject.name.Equals("BeginCheckPointsTrigger"))
+            {
+                UnityEngine.Debug.Log("Search all the trees for <Panda>'s mate!");
+                checkpointReached = true;
+            }
         }
     }
 
