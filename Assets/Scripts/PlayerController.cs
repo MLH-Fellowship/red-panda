@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
 
     // A threshold of 5 seconds for fear tolerance before the panda gives up
-    public float fearThreshold = 5f;
+    public float fearThreshold = 8f;
 
     /* The current meter for fear, we can have this an integer and take the updates of the
      * integer floor of another meter if we want an interactive enter/exit exposure to fear. */
@@ -83,29 +83,35 @@ public class PlayerController : MonoBehaviour
             {
                 FearStateTransition("Panda has a lot of fear!");
                 deadPanda = true;
+                walkSpeed = 0.2f * walkSpeed;
             }
             else if (fearMeter >= 0.66f * fearThreshold && fearState <= 1)
             {
                 FearStateTransition("Panda is pretty scared!");
+                walkSpeed = (1 - 0.66f) * walkSpeed;
             }
             else if (fearMeter >= 0.33f * fearThreshold && fearState == 0)
             {
                 FearStateTransition("Panda is getting anxious!");
+                walkSpeed = (1 - 0.33f) * walkSpeed;
             }
         } else if (additiveModifier < 0)
         {
             if (fearMeter < fearThreshold && fearState > 2)
             {
                 FearStateTransition("Panda is shivering in safety!", -1);
+                walkSpeed = 0.33f*8f;
             }
             else if (fearMeter < 0.5f * fearThreshold && fearState > 1)
             {
                 FearStateTransition("Panda is calming down!", -1);
+                walkSpeed = 0.66f * 8f;
             }
             else if (fearMeter < 0f && fearState >= 1)
             {
                 FearStateTransition("Panda is calm!", -1);
                 fearMeter = 0f;
+                walkSpeed = 8f;
             }
         }
     }
